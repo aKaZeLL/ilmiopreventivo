@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaterialiArredi index{% endblock %}
+
+{% block body %}
+    <h1>MaterialiArredi index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tipologia</th>
+                <th>Prezzo</th>
+                <th>Note</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for materiali_arredi in materiali_arredis %}
+            <tr>
+                <td>{{ materiali_arredi.id }}</td>
+                <td>{{ materiali_arredi.tipologia }}</td>
+                <td>{{ materiali_arredi.prezzo }}</td>
+                <td>{{ materiali_arredi.note }}</td>
+                <td>
+                    <a href="{{ path('app_materiali_arredi_show', {'id': materiali_arredi.id}) }}">show</a>
+                    <a href="{{ path('app_materiali_arredi_edit', {'id': materiali_arredi.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_materiali_arredi_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit MaterialiArredi{% endblock %}
+
+{% block body %}
+    <h1>Edit MaterialiArredi</h1>
+
+    {{ include('materiali_arredi/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_materiali_arredi_index') }}">back to list</a>
+
+    {{ include('materiali_arredi/_delete_form.html.twig') }}
+{% endblock %}

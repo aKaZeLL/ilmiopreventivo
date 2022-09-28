@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaterialiArredi{% endblock %}
+
+{% block body %}
+    <h1>MaterialiArredi</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ materiali_arredi.id }}</td>
+            </tr>
+            <tr>
+                <th>Tipologia</th>
+                <td>{{ materiali_arredi.tipologia }}</td>
+            </tr>
+            <tr>
+                <th>Prezzo</th>
+                <td>{{ materiali_arredi.prezzo }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ materiali_arredi.note }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_materiali_arredi_index') }}">back to list</a>
+
+    <a href="{{ path('app_materiali_arredi_edit', {'id': materiali_arredi.id}) }}">edit</a>
+
+    {{ include('materiali_arredi/_delete_form.html.twig') }}
+{% endblock %}

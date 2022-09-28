@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New MaterialiArredi{% endblock %}
+
+{% block body %}
+    <h1>Create new MaterialiArredi</h1>
+
+    {{ include('materiali_arredi/_form.html.twig') }}
+
+    <a href="{{ path('app_materiali_arredi_index') }}">back to list</a>
+{% endblock %}
