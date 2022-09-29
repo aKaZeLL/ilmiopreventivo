@@ -26,6 +26,10 @@ class Lavori
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $note = null;
 
+    #[ORM\ManyToOne(inversedBy: 'lavori')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Preventivo $preventivo = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +79,18 @@ class Lavori
     public function setNote(?string $note): self
     {
         $this->note = $note;
+
+        return $this;
+    }
+
+    public function getPreventivo(): ?Preventivo
+    {
+        return $this->preventivo;
+    }
+
+    public function setPreventivo(?Preventivo $preventivo): self
+    {
+        $this->preventivo = $preventivo;
 
         return $this;
     }
