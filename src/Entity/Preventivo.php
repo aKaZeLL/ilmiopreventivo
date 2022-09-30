@@ -25,6 +25,12 @@ class Preventivo
     #[ORM\OneToMany(mappedBy: 'preventivo', targetEntity: MaterialiArredi::class, orphanRemoval: true)]
     private Collection $materialiarredi;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $nome = null;
+
+    #[ORM\Column]
+    private ?bool $complete = null;
+
     public function __construct()
     {
         $this->lavori = new ArrayCollection();
@@ -104,6 +110,30 @@ class Preventivo
                 $materialiarredi->setPreventivo(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNome(): ?string
+    {
+        return $this->nome;
+    }
+
+    public function setNome(?string $nome): self
+    {
+        $this->nome = $nome;
+
+        return $this;
+    }
+
+    public function isComplete(): ?bool
+    {
+        return $this->complete;
+    }
+
+    public function setComplete(bool $complete): self
+    {
+        $this->complete = $complete;
 
         return $this;
     }

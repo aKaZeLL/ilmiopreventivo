@@ -9,9 +9,51 @@
     </head>
 
     <body>
-        {% block body %}
-		
-		{% endblock %}
+		<header>		
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			  <div class="container-fluid">
+				<a class="navbar-brand" href="{{ path('app_home') }}">Home</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarText">
+				  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+					  <a class="nav-link active" aria-current="page" href="{{ path('app_showAll') }}">Preventivi</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" href="#">[To Do]</a>
+					</li>
+					{% if not app.user %}
+					<li class="nav-item">
+					  <a class="nav-link" href="{{ path('app_registration') }}">Registrati Gratis</a>
+					</li>
+					{% endif %}
+				  </ul>
+				  <span class="navbar-text">
+					{% if app.user %}
+						<div class="mb-3">
+							Ciao {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+						</div>
+					{% endif %}
+					
+					{% if not app.user %}
+						<div class="mb-3">
+							<a href="{{ path('app_login') }}">Login</a>
+						</div>
+					{% endif %}
+				  </span>
+				</div>
+			  </div>
+			</nav>
+		<div class="container">
+			<img src="{{ asset('/images/header1200.jpg') }}" class="rounded mx-auto d-block" style="width: 80%; height: auto;">
+		</div>
+		</header>
+		<div class="container w-75">
+				{% block body %}
+				{% endblock %}
+		</div>
 	<!-- JavaScript Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     </body>

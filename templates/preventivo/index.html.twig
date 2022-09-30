@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Preventivi{% endblock %}
+
+{% block body %}
+<div class="w-50 ms-5">
+	{% if app.user %}
+	<h2>Elenco dei tuoi preventivi</h2>
+	<br>
+
+	{% for p in preventivi %}
+		<li> <a href="{{ path('app_preventivo', {id: p.id} ) }}">{{ p.nome }}</a></li>
+	{% endfor %}
+
+	{% endif %}
+</div>
+{% endblock %}
