@@ -3,9 +3,11 @@
 namespace App\Form;
 
 use App\Entity\MaterialiArredi;
+use App\Entity\Preventivo;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class MaterialiArrediType extends AbstractType
 {
@@ -15,6 +17,9 @@ class MaterialiArrediType extends AbstractType
             ->add('tipologia')
             ->add('prezzo')
             ->add('note')
+			->add('preventivo', EntityType::class, [
+				'class'=>Preventivo::class
+			])
         ;
     }
 

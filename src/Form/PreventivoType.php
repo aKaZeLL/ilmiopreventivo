@@ -7,7 +7,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use App\Entity\Lavori;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use App\Form\LavoriType;
 
 class PreventivoType extends AbstractType
 {
@@ -16,8 +17,9 @@ class PreventivoType extends AbstractType
         $builder
             ->add('nome')
 			->add('lavori', CollectionType::class, [
-				// each entry in the array will be an "email" field
-				'entry_type' => Lavori::class,
+				'entry_type' => LavoriType::class,
+				'allow_add' => true,
+				'prototype' => true,
 			])
         ;
     }

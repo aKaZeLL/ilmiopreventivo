@@ -19,6 +19,26 @@
                 <th>Complete</th>
                 <td>{{ preventivo.complete ? 'Yes' : 'No' }}</td>
             </tr>
+			<tr>
+                <th>Lavori</th>
+				{% for lavoro in lavori %}
+				<tr>
+					<td></td>
+					<td>{{ lavoro.specialista }}</td>
+					<td>{{ lavoro.intervento }}</td>
+				</tr>
+				{% endfor %}
+            </tr>
+			<tr>
+                <th>Arredi e Materiali</th>
+				{% for mat in materiali %}
+				<tr>
+					<td></td>
+					<td>{{ mat.tipologia }}</td>
+					<td>{{ mat.note }}</td>
+				</tr>
+				{% endfor %}
+            </tr>
         </tbody>
     </table>
 

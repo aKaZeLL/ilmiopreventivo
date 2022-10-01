@@ -16,8 +16,13 @@ class PreventivoController extends AbstractController
     #[Route('/', name: 'app_preventivo_index', methods: ['GET'])]
     public function index(PreventivoRepository $preventivoRepository): Response
     {
+		$user = $this->getUser();
+
         return $this->render('preventivo/index.html.twig', [
-            'preventivos' => $preventivoRepository->findAll(),
+            'preventivos' => $preventivoRepository->findBy(
+				['user' => $user],
+				['id'=>'DESC']
+			),
         ]);
     }
 
@@ -43,7 +48,12 @@ class PreventivoController extends AbstractController
     #[Route('/{id}', name: 'app_preventivo_show', methods: ['GET'])]
     public function show(Preventivo $preventivo): Response
     {
+		$lavori = $preventivo->getLavori();
+		$materiali = $preventivo->getMaterialiarredi();
+
         return $this->render('preventivo/show.html.twig', [
+			'materiali' => $materiali,
+			'lavori' => $lavori,
             'preventivo' => $preventivo,
         ]);
     }
