@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Preventivo{% endblock %}
+
+{% block body %}
+    <h1>Create new Preventivo</h1>
+
+    {{ include('preventivo/_form.html.twig') }}
+
+    <a href="{{ path('app_preventivo_index') }}">back to list</a>
+{% endblock %}

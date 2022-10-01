@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Preventivo{% endblock %}
+
+{% block body %}
+    <h1>Preventivo</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ preventivo.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ preventivo.nome }}</td>
+            </tr>
+            <tr>
+                <th>Complete</th>
+                <td>{{ preventivo.complete ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_preventivo_index') }}">back to list</a>
+
+    <a href="{{ path('app_preventivo_edit', {'id': preventivo.id}) }}">edit</a>
+
+    {{ include('preventivo/_delete_form.html.twig') }}
+{% endblock %}
