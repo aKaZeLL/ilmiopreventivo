@@ -10,12 +10,12 @@ use App\Entity\Preventivo;
 
 class PreventivoController extends AbstractController
 {
-    #[Route('/preventivo', name: 'app_make_preventivo')]
-    public function make(): Response
+    #[Route('/preventivo/{id}/add', name: 'app_add_preventivo')]
+    public function add(Preventivo $prev): Response
     {
 		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        return $this->render('preventivo/make.html.twig', [
-            
+        return $this->render('preventivo/add.html.twig', [
+            'id' => $prev,
         ]);
     }
 
@@ -33,12 +33,15 @@ class PreventivoController extends AbstractController
     }
 	
 	#[Route('/preventivo/{id}', name: 'app_preventivo')]
-    public function preventivo(Preventivo $prev): Response
+    public function preventivo(Preventivo $preventivo): Response
     {
-		dd($prev);
+		$lavori = $preventivo->getLavori();
+		$materiali = $preventivo->getMaterialiarredi();
 
-        return $this->render('preventivo/index.html.twig', [
-            'preventivo' => $prev,
+        return $this->render('preventivo/detail.html.twig', [
+			'materiali' => $materiali,
+			'lavori' => $lavori,
+            'preventivo' => $preventivo,
         ]);
     }
 }
