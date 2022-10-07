@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Preventivi{% endblock %}
+
+{% block body %}
+<div class="w-50 ms-5">
+
+<h1>Preventivo {{ preventivo.id }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nome</th>
+                <td>{{ preventivo.nome }}</td>
+            </tr>
+            <tr>
+                <th>Completo</th>
+                <td>{{ preventivo.complete ? 'Si' : 'No' }}</td>
+            </tr>
+			<tr>
+                <th>Lavori</th>
+				{% if lavori.count() > 0 %}
+					{% for lavoro in lavori %}
+						<tr>
+							<td>{{ lavoro.specialista }}: {{ lavoro.intervento }}</td>
+							<td>Prezzo: {{ lavoro.prezzo}}</td>
+						</tr>
+					{% endfor %}
+				{% else %}
+					<tr>
+						<td>Nessun lavoro per questo preventivo</td>
+					</tr>
+				{% endif %}
+            </tr>
+			<tr>
+                <th>Arredi e Materiali</th>
+				{% if materiali.count() > 0 %}
+					{% for mat in materiali %}
+						<tr>
+							<td>{{ mat.tipologia }}</td>
+							<td>Prezzo {{ mat.prezzo }}</td>
+						</tr>
+					{% endfor %}
+				{% else %}
+					<tr>
+						<td>Nessun Materiale o Arredo per questo preventivo</td>
+					</tr>
+				{% endif %}
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}
