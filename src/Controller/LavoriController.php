@@ -26,6 +26,7 @@ class LavoriController extends AbstractController
     #[Route('/new', name: 'app_lavori_new', methods: ['GET', 'POST'])]
     public function new(Request $request, LavoriRepository $lavoriRepository, PreventivoRepository $preventivoRepository): Response
     {
+		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 		$preventivo = $preventivoRepository->find($request->query->get('id'));
 
         $lavori = new Lavori();
@@ -57,6 +58,7 @@ class LavoriController extends AbstractController
     #[Route('/{id}/edit', name: 'app_lavori_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Lavori $lavori, LavoriRepository $lavoriRepository): Response
     {
+		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $form = $this->createForm(LavoriType::class, $lavori);
         $form->handleRequest($request);
 
@@ -75,6 +77,7 @@ class LavoriController extends AbstractController
     #[Route('/{id}', name: 'app_lavori_delete', methods: ['POST'])]
     public function delete(Request $request, Lavori $lavori, LavoriRepository $lavoriRepository): Response
     {
+		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         if ($this->isCsrfTokenValid('delete'.$lavori->getId(), $request->request->get('_token'))) {
             $lavoriRepository->remove($lavori, true);
         }
