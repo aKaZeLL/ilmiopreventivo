@@ -4,14 +4,14 @@
 
 {% block body %}
 <div class="w-50 ms-5">
-	{% if app.user %}
 	<h2>Elenco dei tuoi preventivi</h2>
 	<br>
-
-	{% for p in preventivi %}
-		<li> <a href="{{ path('app_preventivo', {id: p.id} ) }}">{{ p.nome }}</a></li>
-	{% endfor %}
-
+	{% if preventivi.count() > 0%}
+		{% for p in preventivi %}
+			<li> <a href="{{ path('app_preventivo', {id: p.id} ) }}">{{ p.nome }}</a></li>
+		{% endfor %}
+	{% else %}
+		<p>Nessun Preventivo</p>
 	{% endif %}
 </div>
 {% endblock %}

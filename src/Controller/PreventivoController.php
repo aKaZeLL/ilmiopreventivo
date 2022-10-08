@@ -26,6 +26,7 @@ class PreventivoController extends AbstractController
 	#[Route('/preventivo/{id}', name: 'app_preventivo')]
     public function preventivo(Preventivo $preventivo): Response
     {
+		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 		$lavori = $preventivo->getLavori();
 		$materiali = $preventivo->getMaterialiarredi();
 

@@ -29,6 +29,7 @@
 							{% else %}
 							<td>Pagati: {{ lavoro.pagati }}</td>
 							{% endif %}
+							<td><a href="{{ path('app_lavori_edit', {'id': lavoro.id}) }}">Modifica</a></td>
 						</tr>
 					{% endfor %}
 					<td>Sub Totale Lavori: {{ preventivo.getTotalPriceLavori }}</td>
@@ -55,6 +56,7 @@
 							{% else %}
 							<td>Pagati: {{ mat.pagati }}</td>
 							{% endif %}
+							<td><a href="{{ path('app_materiali_arredi_edit', {'id': mat.id}) }}">Modifica</a></td>
 						</tr>
 					{% endfor %}
 					<td>Sub Totale Materiali e Arredi: {{ preventivo.getTotalPriceMateriali }}</td>
@@ -69,6 +71,13 @@
 					</tr>
 				{% endif %}
             </tr>
+			<tr>
+				<th>Totale</th>
+				<tr>
+					<td>{{ preventivo.getTotalPriceLavori + preventivo.getTotalPriceMateriali }}</td>
+					<td>Da saldare: {{ preventivo.getRestantiLavori + preventivo.getRestantiMateriali }}</td>
+				</tr>
+			</tr>
         </tbody>
     </table>
 

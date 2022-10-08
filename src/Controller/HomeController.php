@@ -41,7 +41,7 @@ class HomeController extends AbstractController
 			$em->persist($prev);
 			$em->flush();
 			
-			return $this->redirect($this->generateUrl('app_make_preventivo'));
+			return $this->redirect($this->generateUrl('app_showAll'));
 		}
 
         return $this->render('home/index.html.twig', [
