@@ -27,6 +27,9 @@ class MaterialiArredi
     #[ORM\JoinColumn(nullable: false)]
     private ?Preventivo $preventivo = null;
 
+    #[ORM\Column(type: Types::DECIMAL, precision: 8, scale: 2, nullable: true)]
+    private ?string $pagati = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -78,5 +81,31 @@ class MaterialiArredi
         $this->preventivo = $preventivo;
 
         return $this;
+    }
+
+    public function getPagati(): ?string
+    {
+        return $this->pagati;
+    }
+
+    public function setPagati(?string $pagati): self
+    {
+        $this->pagati = $pagati;
+
+        return $this;
+    }
+	
+	public function getRestanti(): ?string
+    {
+        return (string)((float)$this->prezzo - (float)$this->pagati);
+    }	
+
+    public function isSaldato(): ?bool
+    {
+		if ($this->getRestanti() == 0) {
+			return true;
+		} else {
+			return false;
+		}        
     }
 }

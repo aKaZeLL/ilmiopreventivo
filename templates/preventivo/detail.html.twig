@@ -18,14 +18,25 @@
                 <td>{{ preventivo.complete ? 'Si' : 'No' }}</td>
             </tr>
 			<tr>
-                <th>Lavori</th>
+                <th>Lavori <a href="{{ path('app_lavori_new', {'id': preventivo.id}) }}">+</a></th>
 				{% if lavori.count() > 0 %}
 					{% for lavoro in lavori %}
 						<tr>
 							<td>{{ lavoro.specialista }}: {{ lavoro.intervento }}</td>
 							<td>Prezzo: {{ lavoro.prezzo}}</td>
+							{% if lavoro.isSaldato %}
+							<td>Saldato</td>
+							{% else %}
+							<td>Pagati: {{ lavoro.pagati }}</td>
+							{% endif %}
 						</tr>
 					{% endfor %}
+					<td>Sub Totale Lavori: {{ preventivo.getTotalPriceLavori }}</td>
+					{% if preventivo.getRestantiLavori == 0 %}
+					<td>Saldato</td>
+					{% else %}
+					<td>Da pagare: {{ preventivo.getRestantiLavori }}</td>
+					{% endif %}
 				{% else %}
 					<tr>
 						<td>Nessun lavoro per questo preventivo</td>
@@ -33,14 +44,25 @@
 				{% endif %}
             </tr>
 			<tr>
-                <th>Arredi e Materiali</th>
+                <th>Arredi e Materiali <a href="{{ path('app_materiali_arredi_new', {'id': preventivo.id}) }}">+</a></th>
 				{% if materiali.count() > 0 %}
 					{% for mat in materiali %}
 						<tr>
 							<td>{{ mat.tipologia }}</td>
-							<td>Prezzo {{ mat.prezzo }}</td>
+							<td>Prezzo: {{ mat.prezzo }}</td>
+							{% if mat.isSaldato %}
+							<td>Saldato</td>
+							{% else %}
+							<td>Pagati: {{ mat.pagati }}</td>
+							{% endif %}
 						</tr>
 					{% endfor %}
+					<td>Sub Totale Materiali e Arredi: {{ preventivo.getTotalPriceMateriali }}</td>
+					{% if preventivo.getRestantiMateriali == 0 %}
+					<td>Saldato</td>
+					{% else %}
+					<td>Da pagare: {{ preventivo.getRestantiMateriali }}</td>
+					{% endif %}
 				{% else %}
 					<tr>
 						<td>Nessun Materiale o Arredo per questo preventivo</td>

@@ -10,15 +10,6 @@ use App\Entity\Preventivo;
 
 class PreventivoController extends AbstractController
 {
-    #[Route('/preventivo/{id}/add', name: 'app_add_preventivo')]
-    public function add(Preventivo $prev): Response
-    {
-		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        return $this->render('preventivo/add.html.twig', [
-            'id' => $prev,
-        ]);
-    }
-
 	#[Route('/preventivi', name: 'app_showAll')]
     public function showAll(): Response
     {

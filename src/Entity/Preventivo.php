@@ -137,4 +137,44 @@ class Preventivo
 
         return $this;
     }
+	
+	public function getTotalPriceLavori(): float
+    {
+		$tot = 0;
+        foreach ($this->getLavori() as $l) {
+			$tot += (float)$l->getPrezzo();
+		}
+
+        return $tot;
+    }
+	
+	public function getRestantiLavori(): float
+    {
+		$tot = 0;
+        foreach ($this->getLavori() as $l) {
+			$tot += (float)$l->getRestanti();
+		}
+
+        return $tot;
+    }
+	
+	public function getTotalPriceMateriali(): float
+    {
+		$tot = 0;
+        foreach ($this->getMaterialiarredi() as $m) {
+			$tot += (float)$m->getPrezzo();
+		}
+
+        return $tot;
+    }
+	
+	public function getRestantiMateriali(): float
+    {
+		$tot = 0;
+        foreach ($this->getMaterialiarredi() as $m) {
+			$tot += (float)$m->getRestanti();
+		}
+
+        return $tot;
+    }
 }

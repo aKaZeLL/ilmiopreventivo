@@ -15,7 +15,8 @@ class LavoriType extends AbstractType
             ->add('specialista')
             ->add('intervento')
             ->add('prezzo')
-            ->add('note')
+            ->add('pagati')
+			->add('note')
         ;
     }
 

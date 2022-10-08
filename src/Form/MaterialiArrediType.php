@@ -14,6 +14,7 @@ class MaterialiArrediType extends AbstractType
         $builder
             ->add('tipologia')
             ->add('prezzo')
+			->add('pagati')
             ->add('note')
         ;
     }
