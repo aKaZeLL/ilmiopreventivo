@@ -18,7 +18,7 @@
                 <td>{{ preventivo.complete ? 'Si' : 'No' }}</td>
             </tr>
 			<tr>
-                <th>Lavori <a href="{{ path('app_lavori_new', {'id': preventivo.id}) }}">+</a></th>
+                <th>Lavori {% if owner %} <a href="{{ path('app_lavori_new', {'id': preventivo.id}) }}">+</a>{% endif %}</th>
 				{% if lavori.count() > 0 %}
 					{% for lavoro in lavori %}
 						<tr>
@@ -29,7 +29,7 @@
 							{% else %}
 							<td>Pagati: {{ lavoro.pagati }}</td>
 							{% endif %}
-							<td><a href="{{ path('app_lavori_edit', {'id': lavoro.id}) }}">Modifica</a></td>
+							{% if owner %}<td><a href="{{ path('app_lavori_edit', {'id': lavoro.id}) }}">Modifica</a></td>{% endif %}
 						</tr>
 					{% endfor %}
 					<td>Sub Totale Lavori: {{ preventivo.getTotalPriceLavori }}</td>
@@ -45,7 +45,7 @@
 				{% endif %}
             </tr>
 			<tr>
-                <th>Arredi e Materiali <a href="{{ path('app_materiali_arredi_new', {'id': preventivo.id}) }}">+</a></th>
+                <th>Arredi e Materiali {% if owner %} <a href="{{ path('app_materiali_arredi_new', {'id': preventivo.id}) }}">+</a>{% endif %}</th>
 				{% if materiali.count() > 0 %}
 					{% for mat in materiali %}
 						<tr>
@@ -56,7 +56,7 @@
 							{% else %}
 							<td>Pagati: {{ mat.pagati }}</td>
 							{% endif %}
-							<td><a href="{{ path('app_materiali_arredi_edit', {'id': mat.id}) }}">Modifica</a></td>
+							{% if owner %}<td><a href="{{ path('app_materiali_arredi_edit', {'id': mat.id}) }}">Modifica</a></td>{% endif %}
 						</tr>
 					{% endfor %}
 					<td>Sub Totale Materiali e Arredi: {{ preventivo.getTotalPriceMateriali }}</td>

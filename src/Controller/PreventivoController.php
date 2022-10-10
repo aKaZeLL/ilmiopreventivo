@@ -26,14 +26,18 @@ class PreventivoController extends AbstractController
 	#[Route('/preventivo/{id}', name: 'app_preventivo')]
     public function preventivo(Preventivo $preventivo): Response
     {
-		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-		$lavori = $preventivo->getLavori();
-		$materiali = $preventivo->getMaterialiarredi();
+		$owner = false;
+		if ( $preventivo->isOfUser($this->getUser()) ) {
+			$owner = true;
+		}
+			$lavori = $preventivo->getLavori();
+			$materiali = $preventivo->getMaterialiarredi();
 
-        return $this->render('preventivo/detail.html.twig', [
-			'materiali' => $materiali,
-			'lavori' => $lavori,
-            'preventivo' => $preventivo,
-        ]);
+			return $this->render('preventivo/detail.html.twig', [
+				'materiali' => $materiali,
+				'lavori' => $lavori,
+				'preventivo' => $preventivo,
+				'owner' => $owner,
+			]);
     }
 }

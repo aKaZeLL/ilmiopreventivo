@@ -47,6 +47,14 @@ class Preventivo
         return $this->user;
     }
 
+	public function isOfUser($user): bool
+	{
+		if ($this->getUser() == $user) {
+			return true;
+		} else 
+			return false;
+	}
+
     public function setUser(?User $user): self
     {
         $this->user = $user;

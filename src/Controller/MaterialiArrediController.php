@@ -26,7 +26,6 @@ class MaterialiArrediController extends AbstractController
     #[Route('/new', name: 'app_materiali_arredi_new', methods: ['GET', 'POST'])]
     public function new(Request $request, MaterialiArrediRepository $materialiArrediRepository, PreventivoRepository $preventivoRepository): Response
     {
-		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 		$preventivo = $preventivoRepository->find($request->query->get('id'));
 		
         $materialiArredi = new MaterialiArredi();
@@ -57,7 +56,6 @@ class MaterialiArrediController extends AbstractController
     #[Route('/{id}/edit', name: 'app_materiali_arredi_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, MaterialiArredi $materialiArredi, MaterialiArrediRepository $materialiArrediRepository): Response
     {
-		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $form = $this->createForm(MaterialiArrediType::class, $materialiArredi);
         $form->handleRequest($request);
 
@@ -76,7 +74,6 @@ class MaterialiArrediController extends AbstractController
     #[Route('/{id}', name: 'app_materiali_arredi_delete', methods: ['POST'])]
     public function delete(Request $request, MaterialiArredi $materialiArredi, MaterialiArrediRepository $materialiArrediRepository): Response
     {
-		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         if ($this->isCsrfTokenValid('delete'.$materialiArredi->getId(), $request->request->get('_token'))) {
             $materialiArrediRepository->remove($materialiArredi, true);
         }
